@@ -1,0 +1,39 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<h3 style="background-color: rgb(198, 197, 197);">
+    Cadastrar produto</h3>
+
+<div class="container">
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label for="nome_categoria">Nome do produto:</label>
+        <input type="text" class="form-control" id="nome_produto" name="nome_produto" required>
+
+
+        <div class="form-group">
+            <label for="categoria_id">Categoria do Produto:</label>
+            <select name="categoria_id" id="categoria_id" required>
+                <option value="">Selecione uma Categoria</option>
+                {% for cat in categorias %}
+                    <option value="{{ cat.id }}" {% if produto and produto.id_categoria == cat.id %}selected{% endif %}>
+                         {{ cat.nome }}
+                    </option>
+                {% endfor %}
+        </select>
+        </div>
+
+        <div class=" form-group">
+            <label for="imagem">Imagem:</label>
+            <input type="file" class="form-control" id="imagem" name="imagem">
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary mb-2">
+            Cadastrar</button>
+    </form>
+</div>
+
+{% endblock %}
